@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{% block title %}title{% endblock %}</title>
+<link rel="stylesheet" type="text/css" href="/static/style.css?v1">
+</head>
+<body>
+<div>
+{% if user %}
+    {{ user }}  <a href="{{ logout_url }}">logout</a>
+{% else %}
+    <a href="{{ login_url }}">login</a>
+{% endif %}
+</div>
+
+{% block content %}
+<p>your content here</p>
+{% endblock %}
+
+<body>
+</html>
+
