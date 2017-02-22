@@ -7,6 +7,7 @@
 
 # Install some quality of life stuff
 sudo apt-get install -y git unzip
+sudo apt-get install -y python-pip
 
 # install Google Cloud and App Engine Python SDKs
 export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
@@ -15,5 +16,8 @@ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install -y google-cloud-sdk google-cloud-sdk-app-engine-python
 
-# Comment this in if you're paranoid
+# Testing is good
+sudo pip install webtest
+
+# Comment this in if you're paranoid. Depending on how far out of date the VM is, it might run for a while.
 # sudo apt-get upgrade -y
