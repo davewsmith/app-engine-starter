@@ -41,5 +41,5 @@ application = webapp2.WSGIApplication([
         ('/', HomePage),
         ('/admin', AdminPage),
     ],
-    debug = os.environ['APPLICATION_ID'].startswith('dev')
+    debug = os.environ.get('APPLICATION_ID', 'dev').startswith('dev')
 )
