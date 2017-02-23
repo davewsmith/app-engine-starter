@@ -1,6 +1,6 @@
 # App Engine Python Starter VM
 
-This sets up a VirtualBox VM for developing a Google App Engine project, including the SDK, and a trivial app with initial tests.
+This sets up a VirtualBox VM for developing a Google App Engine project, including the App Engine SDK and a trivial app with initial tests.
 
 Having a starting point within reach scratches an itch I have. It may require some fiddling to scratch yours. Fiddle away. I recommend working through at least one app engine app (e.g., the example app) before trying this.
 
