@@ -2,7 +2,7 @@
 
 This sets up a VirtualBox VM for developing a Google App Engine project, including the SDK, and a trivial app with initial tests.
 
-Having a starting point within reach scratches an itch I have. It may require some fiddling to scratch yours. Fiddle away.
+Having a starting point within reach scratches an itch I have. It may require some fiddling to scratch yours. Fiddle away. I recommend working through at least one app engine app (e.g., the example app) before trying this.
 
 ## Requirements
 
@@ -18,11 +18,11 @@ Pull this project down from github, then
 
     vagrant up
 
-Then `vagrant ssh` into the VM to develop, test, and deploy.
-
 On my Linux laptop, with an SSD and over a mediocre network connection, it takes about 7 minutes to build the VM.
 
 ## Developing
+
+`vagrant ssh` into the VM and `cd /vagrant` to develop, test, and deploy. `/vagrant` in the guest is shared with the project directory on host, so you can edit app files outside of the VM.
 
 `make dev` will kick off `dev_appserver`. In the host OS, the application will be available on `http://localhost:8080/`, and the admin server will be available on `http://localhost:8000/`.
 
@@ -38,7 +38,7 @@ See the [Webtest Doc](http://webtest.pythonpaste.org/en/latest/api.html#module-w
 
 ## Deploying
 
-`gcloud init` will let you log in and specify a default app id (project). `make deploy` then deploys to that app id.
+`gcloud init` will let you log in and specify a default app id (project). Thereafter, `make deploy` deploys to that app id.
 
 By default, each deploy gets a new version. To control the version, add `--version` to the `gcloud` command in `Makefile`.  
 
