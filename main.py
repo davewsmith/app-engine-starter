@@ -41,5 +41,5 @@ application = webapp2.WSGIApplication([
         ('/', HomePage),
         ('/admin/?', AdminPage),
     ],
-    debug = os.environ.get('APPLICATION_ID', 'dev~').startswith('dev~')
+    debug = not os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine/')
 )
