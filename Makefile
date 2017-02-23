@@ -5,4 +5,4 @@ test:
 	python -m unittest discover -p '*_test.py'
 
 deploy:
-        gcloud app deploy app.yaml
+                 gcloud app deploy app.yaml
