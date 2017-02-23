@@ -1,42 +1,46 @@
 # App Engine Python Starter VM
 
-Here's a starting point for Google App Engine projects, in Virtual Machine form.
+This sets up a VirtualBox VM for developing a Google App Engine project, including the SDK, and a trivial app with initial tests.
 
-This scratches an itch I have, and may require some fiddling to scratch yours. Fiddle away.
+Having a starting point within reach scratches an itch I have. It may require some fiddling to scratch yours. Fiddle away.
 
 ## Requirements
 
-Building the VM requires VirtualBox and Vagrant. If you're running Ubuntu
+Building the VM requires VirtualBox and Vagrant. If you're running Ubuntu,
 
     sudo apt-get install virtualbox
 
-gets you the former, and following the instructions on `http://vagrant.io` gets you the latter
+gets you the former, and following the instructions on `http://vagrant.io` gets you the latter. If you're on some other platform, follow whatever instructions you need to to get VirtualBox and Vagrant set up.
 
-## Building a VM
+## Building the VM
 
-Pull this down from github, then
+Pull this project down from github, then
 
     vagrant up
 
-On my Linux laptop, with an SSD and over a mediocre network connection, it takes about 7 minutes to build a VM.
-
 Then `vagrant ssh` into the VM to develop, test, and deploy.
+
+On my Linux laptop, with an SSD and over a mediocre network connection, it takes about 7 minutes to build the VM.
 
 ## Developing
 
 `make dev` will kick off `dev_appserver`. In the host OS, the application will be available on `http://localhost:8080/`, and the admin server will be available on `http://localhost:8000/`.
 
-Reload-on-change isn't working inside the VirtualBox guest OS. There's a trail of bug reports on the internets. If you find a solution that's amenable to pull requests, please send me one.
+Reload-on-change isn't working inside the VirtualBox guest OS, so you'll need to restart `dev_appserver` to see code changes. (There's a trail of bug reports about this on the internets. If you find a solution that's amenable to pull requests, please send it my way!)
 
 ## Testing
 
-`make test` runs any tests.
+`make test` runs tests.
+
+Note that the example tests use `Webtest`, which bypasses `app.yaml`. In particular, this means that these tests won't cover any `login:` behavior specified in `app.yaml`.
+
+See the [Webtest Doc](http://webtest.pythonpaste.org/en/latest/api.html#module-webtest) for more on Webtest.
 
 ## Deploying
 
-`make deploy` deploys the application to App Engine.
+`gcloud init` will let you log in and specify a default app id (project). `make deploy` then deploys to that app id.
 
-This requires the environment variable `APP` to be set to the name of the application (as registered with App Engine), and make require a `gcloud init` to log in and cache credentials.
+By default, each deploy gets a new version. To control the version, add `--version` to the `gcloud` command in `Makefile`.  
 
 ## License
 
