@@ -20,9 +20,13 @@ Pull this project down from github, then
 
 On my Linux laptop, with an SSD and over a mediocre network connection, it takes about 7 minutes to build the VM.
 
-## Developing
+## Using the VM
 
-`vagrant ssh` into the VM and `cd /vagrant` to develop, test, and deploy. `/vagrant` in the guest is shared with the project directory on host, so you can edit app files outside of the VM.
+The commands below are issued from a shell session into the VM. `vagrant ssh` gets you into the VM; `cd /vagrant` gets you to the directory within the VM that's shared with the current (at the time of VM startup) directory outside of the VM.
+
+I exit the `ssh` session and use `vagrant suspend` to shut things down cleanly, then `vagrant restart` to restart the VM.
+
+## Developing
 
 `make dev` will kick off `dev_appserver`. In the host OS, the application will be available on `http://localhost:8080/`, and the admin server will be available on `http://localhost:8000/`.
 
@@ -38,9 +42,11 @@ See the [Webtest Doc](http://webtest.pythonpaste.org/en/latest/api.html#module-w
 
 ## Deploying
 
-`gcloud init` will let you log in and specify a default app id (project). Thereafter, `make deploy` deploys to that app id.
+Use `gcloud init` to do the initial log in, and to specify a project name you'll be deploying to. If you need to login again, use `gcloud auth login`.
 
-By default, each deploy gets a new version. To control the version, add `--version` to the `gcloud` command in `Makefile`.  
+`make deploy` deploys the app.
+
+By default, each deploy of the app gets a new version. To control the version, add `--version` to the `gcloud` command in `Makefile`.  
 
 ## License
 
